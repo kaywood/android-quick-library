@@ -26,9 +26,7 @@ import com.android.http.RequestManager;
 import com.android.http.RequestManager.RequestListener;
 
 public class QuickHelper {
-	private static final CharSequence DIALOG_TITLE = "提 示";
-	private static final CharSequence DIALOG_CONFIRM = "确 定";
-	private static final CharSequence DIALOG_CANCEL = "取 消";
+	
 	private static final String UTF_CHARSET = "UTF-8";
 
 	/**
@@ -75,9 +73,9 @@ public class QuickHelper {
 	 */
 	public static void showDialog(Context context, String message, OnClickListener listener) {
 		Builder dialog = new AlertDialog.Builder(context);
-		dialog.setTitle(DIALOG_TITLE);
+		dialog.setTitle(context.getString(R.string.dialog_title));
 		dialog.setMessage(message);
-		dialog.setPositiveButton(DIALOG_CONFIRM, listener);
+		dialog.setPositiveButton(context.getString(R.string.dialog_confirm), listener);
 		dialog.show();
 	}
 
@@ -91,11 +89,11 @@ public class QuickHelper {
 	 */
 	public static void showDialog(Context context, String message, OnClickListener listener, boolean cancelable) {
 		Builder dialog = new AlertDialog.Builder(context);
-		dialog.setTitle(DIALOG_TITLE);
+		dialog.setTitle(context.getString(R.string.dialog_title));
 		dialog.setMessage(message);
 		dialog.setCancelable(cancelable);
-		dialog.setPositiveButton(DIALOG_CONFIRM, listener);
-		dialog.setNegativeButton(DIALOG_CANCEL, listener);
+		dialog.setPositiveButton(context.getString(R.string.dialog_confirm), listener);
+		dialog.setNegativeButton(context.getString(R.string.hello_cancel), listener);
 		dialog.show();
 	}
 
