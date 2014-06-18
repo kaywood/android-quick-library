@@ -18,18 +18,20 @@ public class MainActivity extends SlidingActivity {
 		super.setBehindContentView(R.layout.slide_left);
 		super.setContentView(R.layout.slide_right);
 		
-		SlidingMenu sm = getSlidingMenu();
+		SlidingMenu sm = getSlidingMenu();//more option see PropertiesActivity sample
 		sm.setShadowWidthRes(R.dimen.shadow_width);
 		sm.setShadowDrawable(R.drawable.shadow);
-		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		sm.setFadeDegree(0.35f);
 		sm.setMode(SlidingMenu.LEFT);
-		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+		
+		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 		sm.setBehindWidth(200);
 		sm.setBehindScrollScale(0.333f);
+		
 		setSlidingActionBarEnabled(false);
 		
-		//getSlidingMenu().showMenu();//toggle//直接调无效果
+		//getSlidingMenu().showMenu();//getSlidingMenu().toggle();//may not be effective
 		findViewById(R.id.show).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
