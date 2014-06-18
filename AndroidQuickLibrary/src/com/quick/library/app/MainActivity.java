@@ -27,8 +27,9 @@ public class MainActivity extends SlidingActivity {
 		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 		sm.setBehindWidth(200);
 		sm.setBehindScrollScale(0.333f);
+		setSlidingActionBarEnabled(false);
 		
-		getSlidingMenu().showMenu();//toggle//直接调无效果
+		//getSlidingMenu().showMenu();//toggle//直接调无效果
 		findViewById(R.id.show).setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
