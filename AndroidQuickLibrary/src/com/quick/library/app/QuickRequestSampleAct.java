@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.quick.library.QuickRequestActivity;
 
-public class QuickSampleActivity  extends QuickRequestActivity{
+public class QuickRequestSampleAct extends QuickRequestActivity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

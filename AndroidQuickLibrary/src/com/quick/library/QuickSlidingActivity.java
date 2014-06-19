@@ -1,16 +1,20 @@
 package com.quick.library;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 import com.quick.library.app.R;
 
-public class QuickSlidingActivity extends SlidingActivity {
+public class QuickSlidingActivity extends SlidingActivity implements OnOpenedListener, OnClosedListener {
+	private boolean isOpen = false;
 
 	public void setContentView(int resId, int behindId) {
 		super.setBehindContentView(behindId);
 		super.setContentView(resId);
 
-		SlidingMenu sm = getSlidingMenu();// more option see PropertiesActivity sample
+		SlidingMenu sm = getSlidingMenu();// more option see PropertiesActivity
+											// sample
 		sm.setShadowWidthRes(R.dimen.shadow_width);
 		sm.setShadowDrawable(R.drawable.shadow);
 		sm.setFadeDegree(0.35f);
@@ -22,6 +26,24 @@ public class QuickSlidingActivity extends SlidingActivity {
 		sm.setBehindScrollScale(0.333f);
 
 		setSlidingActionBarEnabled(false);
+
+		getSlidingMenu().setOnOpenedListener(this);
+		getSlidingMenu().setOnClosedListener(this);
+
+	}
+
+	@Override
+	public void onOpened() {
+		this.isOpen = true;
+	}
+
+	@Override
+	public void onClosed() {
+		this.isOpen = false;
+	}
+
+	public boolean isSlidingMenuOpen() {
+		return this.isOpen;
 	}
 
 }
