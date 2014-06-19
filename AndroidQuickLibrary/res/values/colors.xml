@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- transparent -->
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="quick_page_bg">#f1f1f1</color>
+    <color name="quick_title_layout_bg">#000000</color>
+  
+</resources>

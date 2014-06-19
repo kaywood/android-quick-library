@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
@@ -15,10 +16,10 @@ import com.android.http.LoadControler;
 import com.android.http.RequestManager.RequestListener;
 import com.quick.library.app.R;
 
-public class QuickActivity extends Activity implements View.OnClickListener, RequestListener {
-	private RelativeLayout mTitleLayout = null;
+public class QuickActivity extends Activity implements RequestListener {
 	private LoadControler mLoadControler = null;
 	private ProgressDialog mProgressDialog = null;
+	private TitleManager mTitleManager = null;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +29,142 @@ public class QuickActivity extends Activity implements View.OnClickListener, Req
 
 	public void setContentView(int resId) {
 		LinearLayout layout = (LinearLayout) getLayoutInflater().inflate(R.layout.activity_quick, null);
-		ScrollView contentLayout = (ScrollView) layout.findViewById(R.id.contentView);
+		ScrollView contentLayout = (ScrollView) layout.findViewById(R.id.quick_content_layout);
 		contentLayout.addView(getLayoutInflater().inflate(resId, null));
 
-		mTitleLayout = (RelativeLayout) layout.findViewById(R.id.titleView);
-		mTitleLayout.setVisibility(View.GONE);
+		RelativeLayout titleLayout = (RelativeLayout) layout.findViewById(R.id.quick_title_layout);
+		this.mTitleManager = new TitleManager(titleLayout);
 
 		super.setContentView(layout);
 	}
 
+	protected TitleManager getTitleManager() {
+		return mTitleManager;
+	}
+
+	protected class TitleManager implements View.OnClickListener {
+		private RelativeLayout mTitleLayout = null;
+
+		public TitleManager(RelativeLayout titleLayout) {
+			this.mTitleLayout = titleLayout;
+			this.mTitleLayout.setVisibility(View.GONE);
+		}
+
+		/**
+		 * set title by CharSequence, not to show back indicator
+		 */
+		public TitleManager setTitle(CharSequence text) {
+			this.setTitle(text, false);
+			return this;
+		}
+
+		/**
+		 * set title by CharSequence
+		 * 
+		 * @param text
+		 * @param back
+		 *            whether to show back indicator
+		 */
+		public TitleManager setTitle(CharSequence text, boolean back) {
+			((TextView) mTitleLayout.findViewById(R.id.quick_title_text)).setText(text);
+
+			View backView = mTitleLayout.findViewById(R.id.quick_back_icon);
+			if (back) {
+				backView.setVisibility(View.VISIBLE);
+				setTitleListener(this);
+			} else {
+				backView.setVisibility(View.GONE);
+			}
+			return this;
+		}
+
+		/**
+		 * back indicator close listener
+		 * 
+		 * @param arg0
+		 */
+		@Override
+		public void onClick(View arg0) {
+			try {
+				QuickActivity.this.finish();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		/**
+		 * set a new View.OnClickListener for left of TitleLayout
+		 * 
+		 * @param listener
+		 */
+		public TitleManager setTitleListener(View.OnClickListener listener) {
+			if (listener != null) {
+				mTitleLayout.findViewById(R.id.quick_left_view).setOnClickListener(listener);
+			}
+			return this;
+		}
+
+		/**
+		 * set Custom View on right of TitleLayout
+		 * 
+		 * @param view
+		 */
+		public TitleManager setOptionView(View.OnClickListener listener) {
+			ImageView imageView = new ImageView(QuickActivity.this);
+			imageView.setImageResource(R.drawable.quick_right_more);
+			this.setOptionView(imageView, listener);
+			return this;
+		}
+
+		/**
+		 * set Custom View on right of TitleLayout
+		 * 
+		 * @param view
+		 */
+		public TitleManager setOptionView(View view, View.OnClickListener listener) {
+			LinearLayout optionLayout = (LinearLayout) mTitleLayout.findViewById(R.id.quick_right_layout);
+			optionLayout.addView(view);
+			optionLayout.setOnClickListener(listener);
+			return this;
+		}
+
+		public void commit() {
+			mTitleLayout.setVisibility(View.VISIBLE);
+		}
+	}
+	
+	public void get(String url, RequestListener requestListener, int actionId) {
+		mLoadControler = QuickHelper.get(url, requestListener, actionId);
+	}
+
+	public void post(String url, String data, RequestListener requestListener, int actionId) {
+		mLoadControler = QuickHelper.post(url, data, requestListener, actionId);
+	}
+
+	/**
+	 * onRequest start
+	 */
+	@Override
+	public void onRequest() {
+		showDialog();
+	}
+
+	/**
+	 * onError
+	 */
+	@Override
+	public void onError(String errorMsg, String url, int arg2) {
+		dismissDialog();
+	}
+
+	/**
+	 * onSuccess
+	 */
+	@Override
+	public void onSuccess(String result, String url, int arg2) {
+		dismissDialog();
+	}
+	
 	/**
 	 * show toast
 	 * 
@@ -115,126 +243,6 @@ public class QuickActivity extends Activity implements View.OnClickListener, Req
 		}
 	}
 
-	/**
-	 * set Bg fo TitleLayout by color value
-	 * 
-	 * @param colorId
-	 */
-	public void setTitleLayoutBg(int colorValue) {
-		mTitleLayout.setBackgroundColor(colorValue);
-	}
-
-	/**
-	 * set title by string resId, not to show back indicator
-	 */
-	public void setTitle(int resId) {
-		this.setTitle(getString(resId));
-	}
-
-	/**
-	 * set title by CharSequence, not to show back indicator
-	 */
-	public void setTitle(CharSequence text) {
-		this.setTitle(text, false);
-	}
-
-	/**
-	 * set title by string resId
-	 * 
-	 * @param resId
-	 * @param back
-	 *            whether to show back indicator
-	 */
-	public void setTitle(int resId, boolean back) {
-		this.setTitle(getString(resId), back);
-	}
-
-	/**
-	 * set title by CharSequence
-	 * 
-	 * @param text
-	 * @param back
-	 *            whether to show back indicator
-	 */
-	public void setTitle(CharSequence text, boolean back) {
-		mTitleLayout.setVisibility(View.VISIBLE);
-		((TextView) mTitleLayout.findViewById(R.id.titleText)).setText(text);
-
-		View backView = mTitleLayout.findViewById(R.id.backImage);
-		if (back) {
-			backView.setVisibility(View.VISIBLE);
-			setTitleListener(this);
-		} else {
-			backView.setVisibility(View.GONE);
-		}
-	}
-
-	/**
-	 * back indicator close listener
-	 * 
-	 * @param arg0
-	 */
-	@Override
-	public void onClick(View arg0) {
-		try {
-			QuickActivity.this.finish();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * set a new View.OnClickListener for left of TitleLayout
-	 * 
-	 * @param listener
-	 */
-	public void setTitleListener(View.OnClickListener listener) {
-		if (listener != null) {
-			mTitleLayout.findViewById(R.id.backView).setOnClickListener(listener);
-		}
-	}
-
-	/**
-	 * set Custom View on right of TitleLayout
-	 * 
-	 * @param view
-	 */
-	public void setTitleView(View view) {
-		((LinearLayout) mTitleLayout.findViewById(R.id.rightView)).addView(view);
-	}
-
-	public void get(String url, RequestListener requestListener, int actionId) {
-		mLoadControler = QuickHelper.get(url, requestListener, actionId);
-	}
-
-	public void post(String url, String data, RequestListener requestListener, int actionId) {
-		mLoadControler = QuickHelper.post(url, data, requestListener, actionId);
-	}
-
-	/**
-	 * onRequest start
-	 */
-	@Override
-	public void onRequest() {
-		showDialog();
-	}
-
-	/**
-	 * onError
-	 */
-	@Override
-	public void onError(String errorMsg, String url, int arg2) {
-		dismissDialog();
-	}
-
-	/**
-	 * onSuccess
-	 */
-	@Override
-	public void onSuccess(String result, String url, int arg2) {
-		dismissDialog();
-	}
-	
 	public void onBackPressed() {
 		if (mLoadControler != null) {
 			mLoadControler.cancel();

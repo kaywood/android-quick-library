@@ -10,7 +10,7 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 import com.quick.library.QuickHelper;
 
 
-public class MainActivity extends SlidingActivity {
+public class HomeSlidingActivity extends SlidingActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

@@ -1,7 +1,7 @@
 package com.quick.library.app;
 
-import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 
 import com.quick.library.QuickActivity;
 
@@ -11,9 +11,19 @@ public class QuickSampleActivity  extends QuickActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_quick_sample);
-		setTitleLayoutBg(Color.BLUE);
-		setTitle("hello world", true);
+		
+		setTitle();
+		
 		super.get("http://www.baidu.com/", this, 0);
+	}
+
+	private void setTitle() {
+		getTitleManager().setTitle("hello world", true).setOptionView(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				showToast("asfad");
+			}
+		}).commit();
 	}
 	
 	@Override
