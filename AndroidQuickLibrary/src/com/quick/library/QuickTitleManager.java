@@ -35,9 +35,9 @@ public class QuickTitleManager implements View.OnClickListener {
 	 *            whether to show back indicator
 	 */
 	public QuickTitleManager setTitle(CharSequence text, boolean back) {
-		((TextView) mTitleLayout.findViewById(R.id.quick_title_text)).setText(text);
+		((TextView) this.mTitleLayout.findViewById(R.id.quick_title_text)).setText(text);
 
-		View backView = mTitleLayout.findViewById(R.id.quick_back_icon);
+		View backView = this.mTitleLayout.findViewById(R.id.quick_back_icon);
 		if (back) {
 			backView.setVisibility(View.VISIBLE);
 			setTitleListener(this);
@@ -55,7 +55,7 @@ public class QuickTitleManager implements View.OnClickListener {
 	@Override
 	public void onClick(View arg0) {
 		try {
-			mActivity.finish();
+			this.mActivity.finish();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -68,7 +68,7 @@ public class QuickTitleManager implements View.OnClickListener {
 	 */
 	public QuickTitleManager setTitleListener(View.OnClickListener listener) {
 		if (listener != null) {
-			mTitleLayout.findViewById(R.id.quick_left_view).setOnClickListener(listener);
+			this.mTitleLayout.findViewById(R.id.quick_left_view).setOnClickListener(listener);
 		}
 		return this;
 	}
@@ -91,13 +91,13 @@ public class QuickTitleManager implements View.OnClickListener {
 	 * @param view
 	 */
 	public QuickTitleManager setOptionView(View view, View.OnClickListener listener) {
-		LinearLayout optionLayout = (LinearLayout) mTitleLayout.findViewById(R.id.quick_right_layout);
+		LinearLayout optionLayout = (LinearLayout) this.mTitleLayout.findViewById(R.id.quick_right_layout);
 		optionLayout.addView(view);
 		optionLayout.setOnClickListener(listener);
 		return this;
 	}
 
 	public void commit() {
-		mTitleLayout.setVisibility(View.VISIBLE);
+		this.mTitleLayout.setVisibility(View.VISIBLE);
 	}
 }
