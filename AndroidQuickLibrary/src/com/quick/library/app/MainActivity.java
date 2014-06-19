@@ -8,7 +8,6 @@ import android.view.View;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 import com.quick.library.QuickHelper;
-import com.quick.library.R;
 
 
 public class MainActivity extends SlidingActivity {

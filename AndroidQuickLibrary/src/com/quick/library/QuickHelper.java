@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
@@ -24,6 +23,7 @@ import android.widget.Toast;
 import com.android.http.LoadControler;
 import com.android.http.RequestManager;
 import com.android.http.RequestManager.RequestListener;
+import com.quick.library.app.R;
 
 public class QuickHelper {
 	
@@ -52,16 +52,6 @@ public class QuickHelper {
 	 */
 	public static LoadControler post(String url, String data, RequestListener requestListener, int actionId) {
 		return RequestManager.getInstance().post(url, data, requestListener, actionId);
-	}
-
-	/**
-	 * set title for activity
-	 * 
-	 * @param activity
-	 * @param title
-	 */
-	public static void setTitle(Activity activity, String title) {
-
 	}
 
 	/**
