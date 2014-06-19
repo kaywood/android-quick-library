@@ -3,9 +3,9 @@ package com.quick.library.app;
 import android.os.Bundle;
 import android.view.View;
 
-import com.quick.library.QuickActivity;
+import com.quick.library.QuickRequestActivity;
 
-public class QuickSampleActivity  extends QuickActivity{
+public class QuickSampleActivity  extends QuickRequestActivity{
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

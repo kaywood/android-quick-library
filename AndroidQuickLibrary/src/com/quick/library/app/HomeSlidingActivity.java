@@ -3,40 +3,16 @@ package com.quick.library.app;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 import com.quick.library.QuickHelper;
+import com.quick.library.QuickSlidingActivity;
 
 
-public class HomeSlidingActivity extends SlidingActivity {
+public class HomeSlidingActivity extends QuickSlidingActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		super.setBehindContentView(R.layout.slide_left);
-		super.setContentView(R.layout.slide_right);
-		
-		SlidingMenu sm = getSlidingMenu();//more option see PropertiesActivity sample
-		sm.setShadowWidthRes(R.dimen.shadow_width);
-		sm.setShadowDrawable(R.drawable.shadow);
-		sm.setFadeDegree(0.35f);
-		sm.setMode(SlidingMenu.LEFT);
-		sm.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-		
-		sm.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-		sm.setBehindWidth(200);
-		sm.setBehindScrollScale(0.333f);
-		
-		setSlidingActionBarEnabled(false);
-		
-		//getSlidingMenu().showMenu();//getSlidingMenu().toggle();//may not be effective
-		findViewById(R.id.show).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				getSlidingMenu().showMenu();
-			}
-		});
+		super.setContentView(R.layout.slide_right, R.layout.slide_left);
 	}
 
 	@Override
