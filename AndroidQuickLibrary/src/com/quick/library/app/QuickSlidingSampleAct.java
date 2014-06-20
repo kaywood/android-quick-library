@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 
-import com.quick.library.QuickUtils;
+import com.quick.library.QuickToolsHelper;
 import com.quick.library.QuickSlidingActivity;
 
 public class QuickSlidingSampleAct extends QuickSlidingActivity {
@@ -34,11 +34,11 @@ public class QuickSlidingSampleAct extends QuickSlidingActivity {
 				@Override
 				public void onClick(DialogInterface arg0, int arg1) {
 					if (arg1 == DialogInterface.BUTTON_POSITIVE) {
-						QuickUtils.appExit();
+						QuickToolsHelper.appExit();
 					}
 				}
 			};
-			QuickUtils.showDialog(this, "exit app?", listener, false);
+			QuickToolsHelper.showDialog(this, "exit app?", listener, false);
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);
