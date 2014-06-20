@@ -58,21 +58,25 @@ public class QuickDialog extends Dialog {
 		textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
 		textView.setTextColor(getContext().getResources().getColor(R.color.quick_text_color));
 		contentLayout.addView(textView);
+		
 		return this;
 	}
 
 	public QuickDialog setMode(int buttonMode) {
 		this.buttonMode = buttonMode;
+		
 		return this;
 	}
 
 	public QuickDialog setView(View view) {
 		contentLayout.addView(view);
+		
 		return this;
 	}
 
 	public QuickDialog setOnClickListener(DialogInterface.OnClickListener listener) {
 		this.listener = listener;
+		
 		return this;
 	}
 
