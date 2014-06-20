@@ -4,8 +4,8 @@
     <string name="app_name">AndroidQuickLibrary</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
-    <string name="dialog_title">提 示</string>
-    <string name="dialog_confirm">确 定</string>
-    <string name="hello_cancel">取 消</string>
+    <string name="quick_dialog_title">提 示</string>
+    <string name="quick_dialog_confirm">确 定</string>
+    <string name="quick_dialog_cancel">取 消</string>
 
 </resources>

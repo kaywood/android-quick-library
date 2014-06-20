@@ -6,9 +6,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -18,15 +17,15 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.http.LoadControler;
 import com.android.http.RequestManager;
 import com.android.http.RequestManager.RequestListener;
-import com.quick.library.app.R;
 
-public class QuickHelper {
-	
+public class QuickUtils {
+
 	private static final String UTF_CHARSET = "UTF-8";
 
 	/**
@@ -61,11 +60,12 @@ public class QuickHelper {
 	 * @param message
 	 * @param listener
 	 */
-	public static void showDialog(Context context, String message, OnClickListener listener) {
-		Builder dialog = new AlertDialog.Builder(context);
-		dialog.setTitle(context.getString(R.string.dialog_title));
+	public static void showDialog(Context context, String message, DialogInterface.OnClickListener listener) {
+		QuickDialog dialog = new QuickDialog(context);
 		dialog.setMessage(message);
-		dialog.setPositiveButton(context.getString(R.string.dialog_confirm), listener);
+		dialog.setMode(QuickDialog.BUTTON_POSITIVE_ONLY);
+		dialog.setOnClickListener(listener);
+		dialog.setCancelable(false);
 		dialog.show();
 	}
 
@@ -78,12 +78,30 @@ public class QuickHelper {
 	 * @param cancelable
 	 */
 	public static void showDialog(Context context, String message, OnClickListener listener, boolean cancelable) {
-		Builder dialog = new AlertDialog.Builder(context);
-		dialog.setTitle(context.getString(R.string.dialog_title));
+		QuickDialog dialog = new QuickDialog(context);
 		dialog.setMessage(message);
+		dialog.setMode(QuickDialog.BUTTON_ALL);
+		dialog.setOnClickListener(listener);
 		dialog.setCancelable(cancelable);
-		dialog.setPositiveButton(context.getString(R.string.dialog_confirm), listener);
-		dialog.setNegativeButton(context.getString(R.string.hello_cancel), listener);
+		dialog.show();
+	}
+
+	/**
+	 * show button with custom content view
+	 * 
+	 * @param context
+	 * @param view
+	 * @param buttonMode
+	 * @param listener
+	 * @param cancelable
+	 */
+	public static void showDialog(Context context, View view, int buttonMode, OnClickListener listener,
+			boolean cancelable) {
+		QuickDialog dialog = new QuickDialog(context);
+		dialog.setView(view);
+		dialog.setMode(buttonMode);
+		dialog.setOnClickListener(listener);
+		dialog.setCancelable(cancelable);
 		dialog.show();
 	}
 

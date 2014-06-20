@@ -49,6 +49,6 @@ public class QuickTitleActivity extends Activity  {
 	 * @param text
 	 */
 	public void showToast(String text) {
-		QuickHelper.showToast(this, text);
+		QuickUtils.showToast(this, text);
 	}
 }
