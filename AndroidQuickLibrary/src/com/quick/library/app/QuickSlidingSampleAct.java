@@ -5,14 +5,16 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 
-import com.quick.library.QuickToolsHelper;
 import com.quick.library.QuickSlidingActivity;
+import com.quick.library.QuickToolsHelper;
 
 public class QuickSlidingSampleAct extends QuickSlidingActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		super.setContentView(R.layout.slide_right, R.layout.slide_left);
+
+		logger.debug("asdfasf              dasfsadfasf");
 
 		findViewById(R.id.show).setOnClickListener(new View.OnClickListener() {
 			@Override

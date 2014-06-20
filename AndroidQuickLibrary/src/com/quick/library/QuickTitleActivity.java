@@ -11,12 +11,17 @@ import android.widget.Toast;
 import com.quick.library.app.R;
 
 public class QuickTitleActivity extends Activity  {
+	
 	private QuickTitleManager mTitleManager = null;
-
+	
+	protected QuickLogger logger=null;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		super.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
+		this.logger=QuickLogger.getLogger(QuickTitleActivity.this);
 	}
 
 	public void setContentView(int resId) {

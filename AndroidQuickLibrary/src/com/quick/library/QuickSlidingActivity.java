@@ -1,5 +1,7 @@
 package com.quick.library;
 
+import android.view.Window;
+
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
@@ -7,12 +9,18 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 import com.quick.library.app.R;
 
 public class QuickSlidingActivity extends SlidingActivity implements OnOpenedListener, OnClosedListener {
+	
 	private boolean isOpen = false;
+	
+	protected QuickLogger logger=null;
 
 	public void setContentView(int resId, int behindId) {
 		super.setBehindContentView(behindId);
 		super.setContentView(resId);
-
+		super.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
+		this.logger=QuickLogger.getLogger(QuickSlidingActivity.this);
+		
 		SlidingMenu sm = getSlidingMenu();// more option see PropertiesActivity
 											// sample
 		sm.setShadowWidthRes(R.dimen.shadow_width);
@@ -31,7 +39,7 @@ public class QuickSlidingActivity extends SlidingActivity implements OnOpenedLis
 		getSlidingMenu().setOnClosedListener(this);
 
 	}
-
+	
 	@Override
 	public void onOpened() {
 		this.isOpen = true;
