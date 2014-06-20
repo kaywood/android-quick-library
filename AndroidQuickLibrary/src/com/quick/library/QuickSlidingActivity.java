@@ -15,9 +15,9 @@ public class QuickSlidingActivity extends SlidingActivity implements OnOpenedLis
 	protected QuickLogger logger=null;
 
 	public void setContentView(int resId, int behindId) {
+		super.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		super.setBehindContentView(behindId);
 		super.setContentView(resId);
-		super.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		
 		this.logger=QuickLogger.getLogger(QuickSlidingActivity.this);
 		
