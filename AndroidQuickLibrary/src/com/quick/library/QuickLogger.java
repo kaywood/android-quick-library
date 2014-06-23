@@ -3,7 +3,7 @@ package com.quick.library;
 import android.content.Context;
 
 /**
- * QuickLogger
+ * Log工具
  * 
  * @author steven-pan
  */

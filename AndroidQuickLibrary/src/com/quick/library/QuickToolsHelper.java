@@ -1,6 +1,10 @@
 package com.quick.library;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -200,6 +204,69 @@ public class QuickToolsHelper {
 		}
 		return null;
 	}
+	
+	/**
+	 * 对字符串进行MD5加密。
+	 */
+	public static String encryptMD5(String strInput) {
+		StringBuffer buf = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.update(strInput.getBytes("UTF-8"));
+			byte b[] = md.digest();
+			buf = new StringBuffer(b.length * 2);
+			for (int i = 0; i < b.length; i++) {
+				if (((int) b[i] & 0xff) < 0x10) { /* & 0xff转换无符号整型 */
+					buf.append("0");
+				}
+				buf.append(Long.toHexString((int) b[i] & 0xff)); /* 转换16进制,下方法同 */
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return buf.toString();
+	}
+
+	/**
+	 * 加载Assert文本文件，转换成String类型
+	 * 
+	 * @param context
+	 * @param fileName
+	 * @return
+	 * @throws IOException
+	 */
+	public static String loadAssetsText(Context context, String fileName) throws IOException {
+		InputStream inputStream = context.getAssets().open(fileName, Context.MODE_PRIVATE);
+		ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+		byte[] bytes = new byte[4096];
+		int len = 0;
+		while ((len = inputStream.read(bytes)) > 0) {
+			byteStream.write(bytes, 0, len);
+		}
+
+		return new String(byteStream.toByteArray(), "UTF-8");
+	}
+	
+	/**
+	 * 加载Raw文本文件，转换成String类型
+	 * 
+	 * @param context
+	 * @param rawId
+	 * @return
+	 * @throws IOException
+	 */
+	public static String loadRawText(Context context, int rawId) throws IOException {
+		InputStream inputStream = context.getResources().openRawResource(rawId);
+		ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+		byte[] bytes = new byte[4096];
+		int len = 0;
+		while ((len = inputStream.read(bytes)) > 0) {
+			byteStream.write(bytes, 0, len);
+		}
+		
+		return new String(byteStream.toByteArray(), "UTF-8");
+	}
+	
 
 	/**
 	 * exit application(kill the process that app hold)

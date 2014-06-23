@@ -7,7 +7,12 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnClosedListener;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 import com.quick.library.app.R;
-
+/**
+ * 左边侧滑基类
+ * 
+ * @author steven-pan
+ *
+ */
 public class QuickSlidingActivity extends SlidingActivity implements OnOpenedListener, OnClosedListener {
 	
 	private boolean isOpen = false;

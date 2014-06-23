@@ -2,10 +2,13 @@
 <resources>
 
     <!-- transparent -->
-    <color name="transparent">#00000000</color>
-    <color name="white">#ffffff</color>
+    <color name="quick_transparent">#00000000</color>
+    <color name="quick_frame">#61a716</color>
+    <color name="quick_divider">#e6e6e6</color>
     <color name="quick_page_bg">#f1f1f1</color>
     <color name="quick_title_layout_bg">#000000</color>
-    <color name="quick_text_color">#333333</color>
+    <color name="quick_title">#333333</color>
+    <color name="quick_title_back">#ffffff</color>
+    <color name="quick_title_focus">#ff1d3c4d</color>
   
 </resources>

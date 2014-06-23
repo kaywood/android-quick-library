@@ -5,6 +5,12 @@ import android.app.ProgressDialog;
 import com.android.http.LoadControler;
 import com.android.http.RequestManager.RequestListener;
 
+/**
+ * 网络请求功能Activity基类
+ * 
+ * @author steven-pan
+ * 
+ */
 public class QuickRequestActivity extends QuickTitleActivity implements RequestListener {
 	private LoadControler mLoadControler = null;
 	private ProgressDialog mProgressDialog = null;

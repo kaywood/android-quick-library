@@ -56,7 +56,7 @@ public class QuickDialog extends Dialog {
 		TextView textView = new TextView(getContext());
 		textView.setText(message);
 		textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-		textView.setTextColor(getContext().getResources().getColor(R.color.quick_text_color));
+		textView.setTextColor(getContext().getResources().getColor(R.color.quick_title));
 		contentLayout.addView(textView);
 		
 		return this;

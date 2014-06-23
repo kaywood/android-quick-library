@@ -10,7 +10,7 @@ public class QuickRequestSampleAct extends QuickRequestActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_quick_sample);
+		setContentView(R.layout.quick_activity_sample);
 		
 		setTitle();
 		

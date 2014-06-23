@@ -9,10 +9,16 @@ import android.widget.TextView;
 
 import com.quick.library.app.R;
 
+/**
+ * QuickTitleManager，用于处理标题设置
+ * 
+ * @author steven-pan
+ * 
+ */
 public class QuickTitleManager implements View.OnClickListener {
-	
+
 	private RelativeLayout mTitleLayout = null;
-	
+
 	private Activity mActivity = null;
 
 	public QuickTitleManager(Activity activity, RelativeLayout titleLayout) {
@@ -26,7 +32,7 @@ public class QuickTitleManager implements View.OnClickListener {
 	 */
 	public QuickTitleManager setTitle(CharSequence text) {
 		this.setTitle(text, false);
-		
+
 		return this;
 	}
 
@@ -47,7 +53,7 @@ public class QuickTitleManager implements View.OnClickListener {
 		} else {
 			backView.setVisibility(View.GONE);
 		}
-		
+
 		return this;
 	}
 
@@ -74,7 +80,7 @@ public class QuickTitleManager implements View.OnClickListener {
 		if (listener != null) {
 			this.mTitleLayout.findViewById(R.id.quick_left_view).setOnClickListener(listener);
 		}
-		
+
 		return this;
 	}
 
@@ -87,7 +93,7 @@ public class QuickTitleManager implements View.OnClickListener {
 		ImageView imageView = new ImageView(mActivity);
 		imageView.setImageResource(R.drawable.quick_right_more);
 		this.setOptionView(imageView, listener);
-		
+
 		return this;
 	}
 
@@ -100,7 +106,7 @@ public class QuickTitleManager implements View.OnClickListener {
 		LinearLayout optionLayout = (LinearLayout) this.mTitleLayout.findViewById(R.id.quick_right_layout);
 		optionLayout.addView(view);
 		optionLayout.setOnClickListener(listener);
-		
+
 		return this;
 	}
 

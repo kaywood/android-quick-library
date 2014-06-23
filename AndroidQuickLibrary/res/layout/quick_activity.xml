@@ -52,7 +52,7 @@
                     android:layout_marginLeft="2dp"
                     android:gravity="center"
                     android:text="TextView"
-                    android:textColor="@color/white"
+                    android:textColor="@color/quick_title_back"
                     android:textSize="16sp" />
             </LinearLayout>
         </LinearLayout>
