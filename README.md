@@ -1,10 +1,18 @@
 Android App快捷开发框架
 =====================
 An quick develop library for Android app development.  
- 
-1、网络层，方便的网络调用模式。  
-2、交互层，方便的对话框，进度条，Toast等交互模式。  
-3、布局层，方便的全局风格、背景，标题栏等设定模式。  
-4、外库层，方便的第三方开发库集成模式。  
-5、工具层，常用工具库的集合。  
+集成Android Volley，SlidingMenue的App快速开发框架。
 
+#####一、库(com.quick.library)：
+1.QuickLogger，LOG工具。
+2.QuickToolHelper，常用工具类。  
+3.QuickTitleActivity，标题Activity基数。  
+4.QuickRequestActivity，网络请求Activity基类。  
+5.QuickSlidingActivity，左边侧滑Activity基类。  
+6.QuickTabView，页面切换标签控件基类。  
+7.QuickTabViewPagerView，文字切换标签+ViewPager内容区控件。  
+
+#####二、示例(com.quick.library.app)
+1.QuickApplication，Volley初始化。  
+2.QuickRequestSampleAct，网络请求示例。  
+3.QuickSlidingSampleAct，左侧滑示例。  
