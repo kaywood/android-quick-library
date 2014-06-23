@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.quick.library.app.R;
 
 /**
- * custom dialog
+ * 自定义Dialog类
  * 
  * @author steven-pan
  * 

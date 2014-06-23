@@ -8,7 +8,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnOpenedListener;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
 import com.quick.library.app.R;
 /**
- * 左边侧滑基类
+ * 左边侧滑Activity基类
  * 
  * @author steven-pan
  *

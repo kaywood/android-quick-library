@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 
 /**
- * 切换标签控件基类
+ * 页面切换标签控件基类
  * 
  * @author savant-pan
  * 

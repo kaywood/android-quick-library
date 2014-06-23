@@ -6,7 +6,7 @@ import com.android.http.LoadControler;
 import com.android.http.RequestManager.RequestListener;
 
 /**
- * 网络请求功能Activity基类
+ * 网络请求Activity基类
  * 
  * @author steven-pan
  * 
