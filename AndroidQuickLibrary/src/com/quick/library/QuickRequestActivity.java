@@ -16,11 +16,11 @@ public class QuickRequestActivity extends QuickTitleActivity implements RequestL
 	private ProgressDialog mProgressDialog = null;
 
 	public void get(String url, RequestListener requestListener, int actionId) {
-		mLoadControler = QuickToolsHelper.get(url, requestListener, actionId);
+		mLoadControler = QuickToolHelper.get(url, requestListener, actionId);
 	}
 
 	public void post(String url, String data, RequestListener requestListener, int actionId) {
-		mLoadControler = QuickToolsHelper.post(url, data, requestListener, actionId);
+		mLoadControler = QuickToolHelper.post(url, data, requestListener, actionId);
 	}
 
 	/**

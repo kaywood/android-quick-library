@@ -28,7 +28,7 @@ import com.android.http.LoadControler;
 import com.android.http.RequestManager;
 import com.android.http.RequestManager.RequestListener;
 
-public class QuickToolsHelper {
+public class QuickToolHelper {
 
 	private static final String UTF_CHARSET = "UTF-8";
 
