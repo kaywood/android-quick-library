@@ -11,7 +11,7 @@ public class QuickLogger {
 
 	private static volatile QuickLogger LOGGER = null;
 
-	private static final String PREFIX = "*//**\\*";
+	private static final String PREFIX = "*//_\\*";
 
 	private String currentTag = null;
 
